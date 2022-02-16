@@ -33,6 +33,14 @@ async function addDataInRows(newSheet: GoogleSpreadsheetWorksheet, infos: ReadRe
     const doc = new GoogleSpreadsheet(process.env.DOC_ID);
     await doc.useServiceAccountAuth(accessAccount);
 
+    // get cell info
+    await doc.loadInfo();
+    const table = doc.sheetsByIndex[0];
+    await table.loadCells('A1:AJ11');
+    const c2 = table.getCellByA1('C2');
+    console.log(c2.value);
+
+    // add in a new sheet
     if (result !== undefined) {
       const newSheet = await doc.addSheet({ title: 'Testando', gridProperties: {  columnCount: result.headers.length }, headerValues: result.headers });
       
