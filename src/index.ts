@@ -8,7 +8,7 @@ async function addDataInRows(newSheet: GoogleSpreadsheetWorksheet, infos: ReadRe
 
   let row: { [key: string]: string } = {};
   let rows: { [key: string]: string }[] = [];
-  
+
   for (const data of infos.data) {
     const info = data.split(',');
     for (let i = 0; i < info.length; i++) {
@@ -22,7 +22,7 @@ async function addDataInRows(newSheet: GoogleSpreadsheetWorksheet, infos: ReadRe
   if (rows !== undefined) await newSheet.addRows(rows);
 }
 
-(async function addInNewRow(): Promise<void> {
+(async function addInNewSheet(): Promise<void> {
   try {
     const result = await readCSV('../page1.csv');
     const accessAccount: ServiceAccountCredentials = {
